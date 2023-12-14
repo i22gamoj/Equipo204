@@ -7,7 +7,13 @@ Usuario::Usuario(std::string dni, std::string nombre, std::string correo, std::s
     correo_ = correo;
     contrasena_ = contrasena;
     tipo_ = tipo;
-    pago_ = pago;
+    pago1_ = pago;
+    pago2_ = pago;
+    pago3_ = pago;
+    pago4_ = pago;
+    pago5_ = pago;º
+    pago6_ = pago;
+    pago7_ = pago;
 }
 
 void Usuario::GestionPerfil()
@@ -114,31 +120,31 @@ void Usuario::ShowActividades(std::vector<Actividad> vector_actividades){
     }
     if(op == 1){
         system("clear");
-        vector_actividades[0].ShowActividadUsuario();
+        SetPago1(vector_actividades[0].ShowActividadUsuario(GetPago1()));
     }
     if(op == 2){
         system("clear");
-        vector_actividades[1].ShowActividadUsuario();
+        SetPago2(vector_actividades[1].ShowActividadUsuario(GetPago2()));
     }
     if(op == 3){
         system("clear");
-        vector_actividades[2].ShowActividadUsuario();
+        SetPago3(vector_actividades[2].ShowActividadUsuario(GetPago3()));
     }
     if(op == 4){
         system("clear");
-        vector_actividades[3].ShowActividadUsuario();
+        SetPago4(vector_actividades[3].ShowActividadUsuario(GetPago4()));
     }
     if(op == 5){
         system("clear");
-        vector_actividades[4].ShowActividadUsuario();
+        SetPago5(vector_actividades[4].ShowActividadUsuario(GetPago5()));
     }
     if(op == 6){
         system("clear");
-        vector_actividades[5].ShowActividadUsuario();
+        SetPago6(vector_actividades[5].ShowActividadUsuario(GetPago6()));
     }
     if(op == 7){
         system("clear");
-        vector_actividades[6].ShowActividadUsuario();
+        SetPago7(vector_actividades[6].ShowActividadUsuario(GetPago7()));
     }
     if(op< 0 || op>7){
         std::cout<<"Opción no válida"<<std::endl;
@@ -146,4 +152,12 @@ void Usuario::ShowActividades(std::vector<Actividad> vector_actividades){
     }
 }
 
-//void Usuario::VerPreins(){}
+/*
+void Usuario::VerPreins(){
+    int n  = 0;
+    for(int it = actividades_inscritas_.begin(); it != actividades_inscritas_.end(); it++){
+        std::cout<<n+1<< it ->GetInscripcion(n)<<std::endl;
+        n++;
+    }
+}
+*/
