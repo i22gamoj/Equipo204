@@ -8,6 +8,8 @@ Actividad::Actividad(std::string nombre, std::string fecha, std::string descripc
     aforo_ = aforo;
 }
 
+
+
 void Actividad::ShowActividad(){
     int x;
 
@@ -17,15 +19,24 @@ void Actividad::ShowActividad(){
     std::cout<<"El evento se realizará: "<< GetFecha()<<std::endl;
     std::cout<<"Cierre de inscripción: "<<GetDescripcion()<<std::endl;
 
-    //Fichero con los datos
+    std::fstream actividad;
+    actividad.open("actividad_mas_reciente.txt", std::ios::out);
+    actividad<<GetNombre()<<std::endl;
+    actividad<<GetDescripcion()<<std::endl;
+    actividad<<"Personas inscritas: "<<GetAforo()<<std::endl;
+    actividad<<"El evento se realizará: "<< GetFecha()<<std::endl;
+    actividad<<"Cierre de inscripción: "<<GetDescripcion()<<std::endl;
+
 
     std::cout<<"FICHERO GENERADO"<<std::endl;
     std::cin>>x;
 }
 
-void Actividad::ShowActividadUsuario(){
+
+
+
+bool Actividad::ShowActividadUsuario(bool pago){
     std::string eleccion;
-    bool pago;
 
     std::cout<<GetNombre()<<std::endl;
     std::cout<<GetDescripcion()<<std::endl;
@@ -33,24 +44,42 @@ void Actividad::ShowActividadUsuario(){
     std::cout<<"El evento se realizará: "<< GetFecha()<<std::endl;
     std::cout<<"Cierre de inscripción: "<<GetDescripcion()<<std::endl;
 
-    std::cout<<"¿Desea inscribirse?(S/N): ";
-    std::cin>>eleccion;
-
-    while(eleccion != "S" && eleccion != "s" && eleccion != "N" && eleccion != "n"){
-        std::cout<<"Opcion no válida, vuelva a intentarlo"<<std::endl;
+    if(pago == false){
+        std::cout<<"¿Desea inscribirse?(S/N): ";
         std::cin>>eleccion;
-    }
 
-    if(eleccion == "S" || eleccion == "s"){
-        Pago p = Pago("x", "x", "x", "x");
-        pago = p.ResolucionPago();
-        std::cout<<UpAforo()<<std::endl;
+        while(eleccion != "S" && eleccion != "s" && eleccion != "N" && eleccion != "n"){
+            std::cout<<"Opcion no válida, vuelva a intentarlo"<<std::endl;
+            std::cin>>eleccion;
+        }
+
+        if(eleccion == "S" || eleccion == "s"){
+            Pago p = Pago("x", "x", "x", "x");
+            pago = p.ResolucionPago();
+            std::cout<<UpAforo()<<std::endl;
+        }
+        if(eleccion == "N" || eleccion == "n"){
+            std::cout<<"Sin problema"<<std::endl;
+        }
+
+        std::fstream actividadusuario;
+        actividadusuario.open("actividad_mas_reciente.txt", std::ios::out);
+        actividadusuario<<GetNombre()<<std::endl;
+        actividadusuario<<GetDescripcion()<<std::endl;
+        actividadusuario<<"Personas inscritas: "<<GetAforo()<<std::endl;
+        actividadusuario<<"El evento se realizará: "<< GetFecha()<<std::endl;
+        actividadusuario<<"Cierre de inscripción: "<<GetDescripcion()<<std::endl;
     }
-    if(eleccion == "N" || eleccion == "n"){
-        std::cout<<"Sin problema"<<std::endl;
+    else{
+        std::cout<<"Ya esta inscrito en esta actividad"<<std::endl;
+        std::cout<<"Escriba'OK' para continuar: ";
+        std::cin >> eleccion;
     }
-    //Fichero con los datos
+        return pago;
 }
+
+
+
 
 std::vector <Actividad> Actividad::CrearActividad(std::vector<Actividad> vector_actividades){
     std::string nombre;
@@ -59,6 +88,7 @@ std::vector <Actividad> Actividad::CrearActividad(std::vector<Actividad> vector_
     std::string caducidad;
 
     std::cout<<"Inserte nombre para la nueva actividad académica: ";
+    std::cin.clear();
     std::cin>> nombre;
 
     std::cout<<"Inserte fecha en la que se celebrará el evento (XX/XX/XXXX): ";
@@ -77,14 +107,13 @@ std::vector <Actividad> Actividad::CrearActividad(std::vector<Actividad> vector_
             std::cin>> caducidad;
     }
 
-    std::cout<<"Por último ingrese una descripción de la actividad académica: ";
-    std::cin>> descripcion;
+    std::cout<<"Por último ingrese una descripción de la actividad académica: ";//FUNCIONA MAL
+    std::cin.clear();
+    std::getline(std::cin, descripcion);
 
     Actividad nueva = Actividad(nombre, fecha, descripcion, caducidad);
 
     vector_actividades.push_back(nueva);
-
-    //Fichero generado
 
     return vector_actividades;
 }

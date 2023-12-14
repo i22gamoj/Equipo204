@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "pago.h"
 
 class Actividad{
@@ -23,7 +24,7 @@ class Actividad{
         int UpAforo(){return aforo_++;};
 
         void ShowActividad();
-        void ShowActividadUsuario();
+        bool ShowActividadUsuario(bool pago);
 
         std::vector <Actividad> CrearActividad(std::vector<Actividad> vector_actividades);
 };

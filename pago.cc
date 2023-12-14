@@ -84,7 +84,7 @@ bool Pago::ResolucionPago(){
         std::cout<<"PAGO REALIZADO CON EXITO, LA TARJETA USADA ES LA SIGUIENTE:"<<std::endl;
         std::cout<<"Titular de tarjeta: "<< tarjeta.GetTitular()<<std::endl;
         std::cout<<"Numero de tarjeta: "<<tarjeta.GetNumero()<<std::endl;
-        std::cout<<"Caducidad de tarjeta"<<tarjeta.GetCaduci()<<std::endl;
+        std::cout<<"Caducidad de tarjeta: "<<tarjeta.GetCaduci()<<std::endl;
         std::cout<<"CVV de tarjeta: "<<tarjeta.GetCVV()<<std::endl;
 
         std::fstream resguardo;
@@ -103,7 +103,7 @@ bool Pago::ResolucionPago(){
     }
 
     if(opcion == "N" || opcion == "n"){
-        std::cout<<"De acuerdo el pago quedará pendiente"<<std::endl;
+        std::cout<<"Se ha cancelado el proceso de preinscripción"<<std::endl;
         std::cin>>opcion;
     }
     return false;
