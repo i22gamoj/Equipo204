@@ -2,6 +2,8 @@
 #define ACTIVIDADACADEMICA_H_
 #include <iostream>
 #include <string>
+#include <vector>
+#include "pago.h"
 
 class Actividad{
     private:
@@ -22,6 +24,8 @@ class Actividad{
 
         void ShowActividad();
         void ShowActividadUsuario();
+
+        std::vector <Actividad> CrearActividad(std::vector<Actividad> vector_actividades);
 };
 
 #endif
