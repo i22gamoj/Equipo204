@@ -1,0 +1,6 @@
+RESGUARDO DE PAGO
+-----------------
+Titular de tarjeta: juan
+Numero de tarjeta: 1234567890123456
+Caducidad de tarjeta: 12/12
+CVV de tarjeta: 123
