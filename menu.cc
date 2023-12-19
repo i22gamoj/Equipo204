@@ -243,6 +243,22 @@ int main()
                     std::cout<<"\n";
                     std::cout << "Introduce tu contraseña de nuevo: ";
                     std::cin >> contrasena;
+
+                    registro.open("registro.txt", std::ios::in);
+                    while(registro.eof() == false){
+                        getline(registro, correoini);
+                        getline(registro, contrasenaini);
+                        getline(registro, dniini);
+                        getline(registro, nombreini);
+
+                        if(correoini == correo && contrasena == contrasena){
+                            correodefini = correo;
+                            contrasenadefini = contrasena;
+                            dnidefini = dniini;
+                            nombredefini = nombreini;
+                        }
+                    }
+                    registro.close();
                 }
             }
         }
